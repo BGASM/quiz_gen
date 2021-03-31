@@ -1,0 +1,20 @@
+[default]
+input = "khquizgen/inputs"
+output = "khquizgen/outputs"
+logs = "khquizgen/logs"
+logging = false
+debug = false
+
+[production]
+input = "khquizgen/inputs"
+output = "khquizgen/outputs"
+logs = "khquizgen/logs"
+logging = false
+debug = false
+
+[development]
+input = "khquizgen/inputs"
+output = "khquizgen/outputs"
+logs = "khquizgen/logs"
+logging = false
+debug = true

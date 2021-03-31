@@ -1,0 +1,239 @@
+Diagnostic:::
+	Diabetes::
+		A1C: >6.5%
+		Fasting Glucose: >126mg/dL
+		2hr Glucose Tolerance: >200mg/dL
+		Hyperglycemia or crisis: >200mg/dL
+	Pre-Diabetes::
+		A1C: 5.7-6.5%
+		Fasting Glucose: 100-125mg/dL
+		2hr Glucose Tolerance: 140-199mg/dL
+	Normal::
+		A1C: 4.5-5.6%
+		Fasting Glucose: <100mg/dL
+		2hr Glucose Tolerance: <140mg/dL
+Meals:::
+		Normal::
+			Preprandial Glucose: 70-99mg/dL
+			Postprandial Glucose: <140mg/dL
+			A1C: 4.5-5.6%
+		Diabetic Goal::
+			Preprandial Glucose: 80-130mg/dL
+			Postprandial Glucose: <180mg/dL
+			A1C: <7%
+Drugs:::
+		Metformin::
+			MOA: Decrease heaptic glucose by inhibiting gluconeogenesis
+			Use case: Always unless contraindicated by kidney disease
+			Efficacy: High efficacy
+			Advantage: Promote weight loss, hyperglycemic, affordable
+			Disadvantage: GI side effects, lactic acidosis, increased risk in PT with CKD, requires adequate GF, vitamin B12 deficiency
+		Sulfonylurea::
+			MOA: Close K+-ATP channel and force Beta-cell insulin release
+			Use case: Cost is primary concern
+			Efficacy: High efficacy
+			Advantage: Affordable
+			Disadvantage: Hypoglycemia, weight gain, waning efficacy
+		Meglinitide::
+			MOA: Close K+-ATP channel and force Beta-cell insulin release
+			Use case: SUR hypoglycemia are concerns
+			Efficacy: Low efficacy
+			Advantage: Short half-lfe, reduced hypoglycemia
+			Disadvantage: Frequent administration, hypoglycemia, weight gain
+		TZD::
+			MOA: Improve insulin sensitivity by increaseing GLUT4 translocation in muscle and adipocytes
+			Use case: Cost or hypoglycemia main concerns
+			Efficacy: High efficacy
+			Advantage: Affordable, anti-hyperglycemic, decrease ectopic lipids, decrease inflammatory cytokines from adipose cells, increase adiponectin, decrease lipolysis
+			Disadvantage: weight gain, increased fluid retention (edema), increased risk of heart failure, anemia
+		GLP-1 Agonist::
+			MOA: Enhance glucose-stimulated insulin secretion and paracrine effect on glucagon
+			Use case: Cardiovasccular risk or hypoglycemia are main concerns
+			Efficacy: High efficacy
+			Advantage: Anti-hyperglycemic, weight loss, decreases risk for cardiovascular disease, increases satiety
+			Disadvantage: GI side effects, expensive, increased risk for pancreatitis, increased risk for thyroid cancer
+		DPP-4 Inhibitor::
+			MOA: Prolongs lifespan of endogenous incretins
+			Use case: Hypoglycemia is main concern
+			Efficacy: Low efficacy
+			Advantage: Anti-hyperglycemic, well-tolerated, oral administration
+			Disadvantage: Expensive
+		SGLT-2 Inhibitor::
+			MOA: Blocks reabsorption of glucose in kidneys
+			Use case: Weight management, cardiovascular risk, or hypoglycemia are main concerns`
+			Efficacy: Low efficacy
+			Advantage: Anti-hyperglycemic, decreases risk of cardiovascular disease, decreases risk of heart failure, slows progression of diabetic nephropathy, weight loss
+			Disadvantage: Increased risk of UTI, increased risk of osmotic diuresis, increased risk of ketoacidosis in T2D, not effective if eGFR <30ml/min
+		Alpha-Glucosidase Inhibitor::
+			MOA:
+			Use case:
+			Efficacy: Low efficacy
+			Advantage:
+			Disadvantage:
+		Amylin mimetic::
+			MOA:
+			Use case:
+			Efficacy: Low efficacy
+			Advantage:
+			Disadvantage:
+Drugs1:::
+        Crystalline Insulin::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Preparation
+        NPH Isophane Insulin::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Preparation
+        Lispro::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Analog
+        Aspart::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Analog
+        Glulisine::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Analog
+        Glargine::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Analog
+        Detemir::
+            Glycemia Classification: Hypoglycemic
+            Classification: Insulin Analog
+        Glyburide::
+            Glycemia Classification: Hypoglycemic
+            Classification: Sulfonyureas
+        Glipizide::
+            Glycemia Classification: Hypoglycemic
+            Classification: Sulfonyureas
+        Repaglinide::
+            Glycemia Classification: Hypoglycemic
+            Classification: Meglitinides
+        Exenatide::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Incretin Mimetics
+        Liraglutide::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Incretin Mimetics
+        Linagliptin::
+            Glycemia Classification: Antihyperglycemic
+            Classification: DPP-4 Inhibitors
+        Sitagliptin::
+            Glycemia Classification: Antihyperglycemic
+            Classification: DPP-4 Inhibitors
+        Metformin::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Biguanides
+        Pioglitazone::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Thiazolidinediones
+        Acarbose::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Alpa-Glucosidase Inhibitors
+        Pramlintide::
+            Glycemia Classification: Antihyperglycemic
+            Classification: Amylin Mimetics
+        Dapagliflozin::
+            Glycemia Classification: Antihyperglycemic
+            Classification: SGLT2 Inhibitors
+        Empagliflozin::
+            Glycemia Classification: Antihyperglycemic
+            Classification: SGLT2 Inhibitors
+        Glucagon::
+            Glycemia Classification: Hyperglycemic
+            Classification: Glucagon Mimetics
+Hormones:::
+        Glucagon::
+            Binds to: G proteins
+            Stimulates: Glycogen breakdown, Heaptic GNG, Lipolysis, Ketone Body synthesis
+            Inhibits: Glycolysis, Glycogenesis, Lipogenesis
+            Secretion by: Pancreatic alpha cells
+            Secretion stimulated by: Hypoglycemia, Amino Acids, Parasympathetics, Sympathetics
+            Secretion inhibited by: Hyperglycemia, Somatostatin, GLP-1
+        PTH::
+            Action: Positve regulation serum Ca
+            Secretion by: Parathyroid chief cells
+            Secretion stimulated by: Hypoglycemia, Amino Acids, Parasympathetics, Sympathetics
+        GH::
+            Binds to: JAK2 receptors
+            Stimulates: Glycogen breakdown, Heaptic GNG, Lipolysis, Ketone Body synthesis, IGF-I production
+            Inhibits: Glucose uptake by muscle and adipose
+            Secretion by: Anterior Pituitary
+            Secretion stimulated by: GHRH
+            Secretion inhibited by: GHIH
+            Axis: HPS
+        OT::
+            Secretion by: Posterior Pituitary
+            Synthesis by: Hypothalamus
+            Axis: HHT
+        ADH::
+            Secretion by: Posterior Pituitary
+            Synthesis by: Hypothalamus
+            Axis: HHT
+        Epinephrine::
+            Binds to: G proteins
+            Stimulated by: Low blood glucose, Stress
+            Secretion by: Adrenal medulla
+            Stimulates: Glucagon release, Lipolysis, Glycogenolysis, Hepatic GNG
+            Inhibits: Insulin release, Glucose uptake by muscle and adipose tissue
+        Somatostatin::
+            Secretion by: Delta pancreatic cells
+            Inhibits: Insulin secretion, Glucagon secretion
+Hormones2:::
+        Thyroid::
+            Secretes: T3-T4, CT
+        Hypothalamus::
+            Secretes: TRH, CRH, GHRH, GHIH, SS, SnRH, DA, PIF
+        Anterior Pituitary::
+            Secretes: TSH, LH, FSH, ACTH, GH, Prolactin
+        Posterior Pituitary::
+            Secretes: ADH, VP, OT
+        Adrenal Cortex::
+            Secretes: Aldosterone, Cortisol, DHEA
+        Adrenal Medulla::
+            Secretes: Norepinephrine, Epinephrine
+Cholesterol:::
+        VLDL::
+            Consists of: Mostly TAG
+            Secreted by: Liver
+            Action: Transport hepatic TAG to peripheral tissue
+            Apoproteins: ApoE, ApoC-II, ApoB-100
+        LDL::
+            Consists of: Mostly cholesterol
+            Secreted by: None - arise from modified IDL
+            Action: Mess you up by dumping cholesterol in peripheral tissue
+            Apoproteins: ApoB-100
+        HDL::
+            Consists of: Mostly proteins and phospholipids
+            Secreted by: Liver, Intestinal epithelium
+            Action: Transport cholesterol from peripheral tissue to liver
+            Apoproteins: ApoE, ApoC-II, ApoA-I
+        IDL::
+            Consists of: TAG, Cholesterol, Protein, Phospholipids
+            Secreted by: None - degradation of VLDL
+            Action: Transport TAG and cholesterol to liver
+            Apoproteins: ApoE, ApoB-100
+        Chylomicrons::
+            Consists of: Mostly TAG
+            Secreted by: Intestinal epithelium
+            Action: Transport dietary TAG from intestine to peripheral tissue
+            Apoproteins: ApoE, ApoC-II, ApoB-48
+Enzymes:::
+        Hormone-sensitive lipase::
+            Location: Intracellular
+            Action: Hydrolyze TAG and DG stored in adipocytes, Mobilize FA out of cells
+            Target: Adipose tissue
+            Regulation: Glucagon +, Epinephrine -, Insulin -
+        Lipoprotein lipase::
+            Location: Extracellular
+            Action: Hydrolyze TAG in chylomicrons and VLDLs, Mobilize FA into cells
+            Target: Chylomicrons and VLDLs
+            Regulation: Insulin +
+        LCAT::
+            Location: HDL Surface
+            Action: Esterification of plasma cholesterol
+        Cholesterol 7-a-hydroxylase::
+            Action: Committed step to start catalysis of cholesterol to bile acids
+            Regulation: Cholesterol +, Cholic acid -, Insulin +, Glucagon -
+        HMG-CoA Reductase::
+            Action: Committed step to synthesize cholesterol
+            Regulation: Cholesterol -, Cholic acid -, Insulin +
+$$$$
