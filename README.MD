@@ -33,3 +33,72 @@
 8. It compares the new potential answer against the original answer using Jaro-Winkler Similarity formula. If the potential answer scores 0.45 or less, or 1.0 (identical),  the answer is discarded and the cycle begins again. In this case, 200mph would be discarded, and the cycle starts again.
 9. After four suitable multiple choices are found, the cycle begins at step 1.
 10. This loop cycles until 100 questions are formed, since that is the limit imposed by Kahoot.
+
+### Template
+Diagnostic:::
+	Diabetes::
+		A1C: >6.5%
+		Fasting Glucose: >126mg/dL
+		2hr Glucose Tolerance: >200mg/dL
+		Hyperglycemia or crisis: >200mg/dL
+	Pre-Diabetes::
+		A1C: 5.7-6.5%
+		Fasting Glucose: 100-125mg/dL
+		2hr Glucose Tolerance: 140-199mg/dL
+	Normal::
+		A1C: 4.5-5.6%
+		Fasting Glucose: <100mg/dL
+		2hr Glucose Tolerance: <140mg/dL
+Meals:::
+		Normal::
+			Preprandial Glucose: 70-99mg/dL
+			Postprandial Glucose: <140mg/dL
+			A1C: 4.5-5.6%
+		Diabetic Goal::
+			Preprandial Glucose: 80-130mg/dL
+			Postprandial Glucose: <180mg/dL
+			A1C: <7%
+Drugs:::
+		Metformin::
+			MOA: Decrease heaptic glucose by inhibiting gluconeogenesis
+			Use case: Always unless contraindicated by kidney disease
+			Efficacy: High efficacy
+			Advantage: Promote weight loss, hyperglycemic, affordable
+			Disadvantage: GI side effects, lactic acidosis, increased risk in PT with CKD, requires adequate GF, vitamin B12 deficiency
+		Sulfonylurea::
+			MOA: Close K+-ATP channel and force Beta-cell insulin release
+			Use case: Cost is primary concern
+			Efficacy: High efficacy
+			Advantage: Affordable
+			Disadvantage: Hypoglycemia, weight gain, waning efficacy
+		Meglinitide::
+			MOA: Close K+-ATP channel and force Beta-cell insulin release
+			Use case: SUR hypoglycemia are concerns
+			Efficacy: Low efficacy
+			Advantage: Short half-lfe, reduced hypoglycemia
+			Disadvantage: Frequent administration, hypoglycemia, weight gain
+		TZD::
+			MOA: Improve insulin sensitivity by increaseing GLUT4 translocation in muscle and adipocytes
+			Use case: Cost or hypoglycemia main concerns
+			Efficacy: High efficacy
+			Advantage: Affordable, anti-hyperglycemic, decrease ectopic lipids, decrease inflammatory cytokines from adipose cells, increase adiponectin, decrease lipolysis
+			Disadvantage: weight gain, increased fluid retention (edema), increased risk of heart failure, anemia
+		GLP-1 Agonist::
+			MOA: Enhance glucose-stimulated insulin secretion and paracrine effect on glucagon
+			Use case: Cardiovasccular risk or hypoglycemia are main concerns
+			Efficacy: High efficacy
+			Advantage: Anti-hyperglycemic, weight loss, decreases risk for cardiovascular disease, increases satiety
+			Disadvantage: GI side effects, expensive, increased risk for pancreatitis, increased risk for thyroid cancer
+		DPP-4 Inhibitor::
+			MOA: Prolongs lifespan of endogenous incretins
+			Use case: Hypoglycemia is main concern
+			Efficacy: Low efficacy
+			Advantage: Anti-hyperglycemic, well-tolerated, oral administration
+			Disadvantage: Expensive
+		SGLT-2 Inhibitor::
+			MOA: Blocks reabsorption of glucose in kidneys
+			Use case: Weight management, cardiovascular risk, or hypoglycemia are main concerns`
+			Efficacy: Low efficacy
+			Advantage: Anti-hyperglycemic, decreases risk of cardiovascular disease, decreases risk of heart failure, slows progression of diabetic nephropathy, weight loss
+			Disadvantage: Increased risk of UTI, increased risk of osmotic diuresis, increased risk of ketoacidosis in T2D, not effective if eGFR <30ml/min
+$$$$
