@@ -1,3 +1,7 @@
+### Installation
+
+`pip install khquizgen`
+
 ### Features
 
 - Takes your notes and intelligently generate random Multiple-Choice sets formatted in a spreadsheet ready to upload straight to Kahoot. 
