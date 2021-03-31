@@ -35,6 +35,7 @@
 10. This loop cycles until 100 questions are formed, since that is the limit imposed by Kahoot.
 
 ### Template
+<pre>
 Diagnostic:::
 	Diabetes::
 		A1C: >6.5%
@@ -102,3 +103,4 @@ Drugs:::
 			Advantage: Anti-hyperglycemic, decreases risk of cardiovascular disease, decreases risk of heart failure, slows progression of diabetic nephropathy, weight loss
 			Disadvantage: Increased risk of UTI, increased risk of osmotic diuresis, increased risk of ketoacidosis in T2D, not effective if eGFR <30ml/min
 $$$$
+</pre>
