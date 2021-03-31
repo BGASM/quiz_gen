@@ -2,6 +2,13 @@
 
 `pip install khquizgen`
 
+### Use
+If using from commandline prefix with -m flag and use the built-in inputs and oputputs path.
+If you want to use different input/output dirs you will need to make a settings.toml file and `set INCLUDES_FOR_DYNACONF=path\to\settings.toml`
+Or you can set envars directly: `set DYNACONF_OUTPUT=path\to\output\dir` and `set DYNACONF_INPUT=path\to\input\dir` and maybe logs `set DYNACONF_LOGS=path\to\logs\dir`
+If you are importing it you can set a settings.toml and set `os.environs['INCLUDES_FOR_DYNACONF']` or each of the individual settings like above in your script before import. It is important that you set the envar before importing khquizgen, otherwise it will use its PACKAGEDIR instead of your settings.
+
+
 ### Features
 
 - Takes your notes and intelligently generate random Multiple-Choice sets formatted in a spreadsheet ready to upload straight to Kahoot. 
