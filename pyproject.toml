@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "khquizgen"
-version = "1.0.4"
+version = "1.1.0"
 description = "Package to randomly autogenerate Kahoot quizzes from notes."
 authors = ["BGASM <slatte26@msu.edu>"]
 license = "MIT"

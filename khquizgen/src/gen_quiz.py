@@ -71,17 +71,17 @@ def random_answer(coin, count, max_count, root,
         tries += 1
         if tries >= 10:
             return None, None
-        dice = rand.choice([1, 2, 3])
+        dice = rand.choice([*range(1, 11, 1)])
 
-        x, y, z = (random_question(root, q0, mod1=mod1, mod2=mod2) if dice == 1 else
-                   random_question(root, q0, q1=q1, mod1=mod1, mod2=mod2) if dice == 2 else
+        x, y, z = (random_question(root, q0, mod1=mod1, mod2=mod2) if dice <= 6 else
+                   random_question(root, q0, q1=q1, mod1=mod1, mod2=mod2) if dice in [7, 8] else
                    random_question(root, q0, q1=q1, q2=q2, mod1=mod1, mod2=mod2))
 
         a1, a2 = stem_parse(x, y, z)
         answer, question = (a1, a2) if coin == 1 else (a2, a1)
         similar = jws(ans, answer)
 
-        if answer == ans or similar <= 0.38:
+        if answer == ans or similar <= 0.42:
             answer = None
             continue
         if question == que and count >= max_count:
