@@ -2,7 +2,7 @@ import random as rand
 from jellyfish import jaro_winkler_similarity as jws
 from khquizgen import logger
 from khquizgen.src.utils import logger_wraps
-modulus = [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4]
+modulus = range(1, 100, 1)
 
 
 def run(root, no_questions):
@@ -38,16 +38,16 @@ class QuizGen:
                 rand.shuffle(self.aks)
                 a_list = [str(i + 1) for i in range(len(self.aks)) if self.aks[i][1]]
                 self.prompt.extend([x[0] for x in self.aks])
-                self.prompt.extend(['15', ','.join(a_list)])
+                self.prompt.extend(['30', ','.join(a_list)])
                 self.q.append('|'.join(self.prompt))
         return self.q
 
     def ans_loop(self, coin):
-        counter, max_count, skip = (1, rand.choice(modulus), False)
+        d100 = rand.choice(modulus)
+        max_count = 1 if d100 <= 40 else 2 if 40 < d100 <= 80 else 3 if 80 < d100 <= 99 else 4
+        counter, skip = (1, False)
         while len(self.aks) < 4:
-            mc, multi = random_answer(coin, counter, max_count, self.root, ans=self.answer,
-                                      que=self.question, q0=self.q0, q1=self.q1, q2=self.q2,
-                                      mod1=self.mod1, mod2=self.mod2)
+            mc, multi = self.random_answer(coin, counter, max_count)
             if all(v is None for v in [mc, multi]):
                 skip = True
                 break
@@ -63,34 +63,42 @@ class QuizGen:
             return True
 
 
-@logger_wraps()
-def random_answer(coin, count, max_count, root,
-                  ans=None, que=None, q0=None, q1=None, q2=None, mod1=None, mod2=None):
-    answer, question, multi, tries = None, None, False, 0
-    while None in [question, answer]:
-        tries += 1
-        if tries >= 10:
-            return None, None
-        dice = rand.choice([*range(1, 50, 1)])
+    @logger_wraps()
+    def random_answer(self, coin, count, max_count):
+        mc_answer, mc_question, multi, tries = None, None, False, 0
+        while None in [mc_question, mc_answer]:
+            tries += 1
+            if tries >= 10:
+                return None, None
+            dice = rand.choice([*range(1, 50, 1)])
 
-        x, y, z = (random_question(root, q0, mod1=mod1, mod2=mod2) if dice in [1] else
-                   random_question(root, q0, q1=q1, mod1=mod1, mod2=mod2) if dice in [2] else
-                   random_question(root, q0, q2=q2, mod1=mod1, mod2=mod2))
+            # Where x = Trunk, y = Branch, z = Leaf
+            x, y, z = (random_question(self.root, self.q0, mod1=self.mod1, mod2=self.mod2) if dice in [1] else
+                       random_question(self.root, self.q0, q1=self.q1, mod1=self.mod1, mod2=self.mod2) if dice in [2] else
+                       random_question(self.root, self.q0, q2=self.q2, mod1=self.mod1, mod2=self.mod2))
 
-        a1, a2 = stem_parse(x, y, z)
-        answer, question = (a1, a2) if coin == 1 else (a2, a1)
-        similar = jws(ans, answer)
+            # Where a1 = Trunk+Branch and a2 = Leaf
+            a1, a2 = stem_parse(x, y, z)
+            mc_answer, mc_question = (a1, a2) if coin == 1 else (a2, a1)
+            similar = jws(self.answer, mc_answer)
 
-        if similar == 1.0 or similar <= 0.42:
-            answer = None
-            continue
-        if question == que and count >= max_count:
-            question = None
-            continue
-        elif question == que and count < max_count:
-            multi = True
-    return answer, multi
+            if similar == 1.0 or similar <= 0.42:
+                mc_answer = None
+                continue
+            if self.match_q(y, z) and count >= max_count:
+                mc_answer = None
+                continue
+            elif self.match_q(y, z) and count < max_count:
+                multi = True
+        return mc_answer, multi
 
+    def match_q(self, mc_q2, mc_q3):
+        logger.debug(f'{mc_q2} and {mc_q3} \n {self.root[self.q0][self.q1]}')
+        if self.q2 is mc_q2:
+            if self.root[self.q0][self.q1].get(mc_q2):
+                if mc_q3 in self.root[self.q0][self.q1][self.q2]:
+                    return True
+        return False
 
 def stem_parse(q1, q2, q3):
     a1, a2 = f'{q1} {q2}', q3
