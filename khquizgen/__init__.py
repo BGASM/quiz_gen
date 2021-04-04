@@ -25,7 +25,7 @@ if '--config' in sys.argv:
     assert '.toml' in config_path.suffix, "Config files need to be a valid .toml file, see example."
     os.environ['SETTINGS_FILE_FOR_DYNACONF'] = str(config_path)
 logger.info(f"INCLUDES FILE ENVAR: {os.getenv('INCLUDES_FOR_DYNACONF')}")
-# Load config from dynaconf. If importing module, ensure you set root path in envar.
+# Load config from dynaconf. If importing module, ensure you set root_dict path in envar.
 LOGPATH = Path(settings.LOGS).resolve()
 LOGGING = settings.LOGGING
 DEBUG = settings.DEBUG
