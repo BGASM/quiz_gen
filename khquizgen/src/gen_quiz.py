@@ -25,8 +25,8 @@ class QuizGen:
             num_q: Number of questions to generate. Max Kahoot quiz is 100 questions.
             timer: 10, 15, 30, 60, 120, 240 in string format
         """
-        self.qbank, self.prompt, self.aks = [], [], []
-        self.question, self.correct, self.prompt, self.aks = [], [], [], []
+        self.qbank = []
+        self.prompt, self.aks = [], []
         self.root, self.trunk, self.branch, self.leaf = None, None, None, None
         self.answer, self.question, self.coin = None, None, None
         self.trunk_list, self.branch_list = None, None
@@ -34,12 +34,18 @@ class QuizGen:
         self.root_dict, self.number_q, self.timer = root_dict, num_q, timer
         self.root_list = list(root_dict.keys())
 
+    def ZERO(self):
+        self.prompt, self.aks = [], []
+        self.root, self.trunk, self.branch, self.leaf = None, None, None, None
+        self.answer, self.question, self.coin = None, None, None
+        self.trunk_list, self.branch_list = None, None
+
     def start_quizgen_loop(self) -> list:
         """Main quiz generation loop.
 
         Each cycle zeroes question parameters and flips a coin that determines what format the
         question answer will be. Either Q: Trunk+Branch A: Leaf or vice versa. A random root,
-        trunk, branch are called and parsed into Q and A. Then the MCQ generation loop is called and
+        n_trunk, n_branch are called and parsed into Q and A. Then the MCQ generation loop is called and
         runs until a total of four mcq options are generated. They are parsed and appended to qbank.
 
         Returns:
@@ -60,28 +66,32 @@ class QuizGen:
 
     def create_new_question(self):
         """Initializes a new Question by zeroing all instance parameters."""
-        self.question, self.correct, self.prompt, self.aks = [], [], [], []
+        self.ZERO()
+
         self.root, self.trunk_list, self.branch_list = get_random_root(self.root_dict, self.root_list)
         self.trunk, self.branch, self.leaf, self.answer, self.question = self.get_question_and_answer()
         self.prompt.append(self.question)
         self.aks.append((self.answer, True))
 
     def get_question_and_answer(self, dice: int = None) -> Tuple[str, str, str, str, str]:
-        """Call functions to generate trunk, branch, leaf, answer, and question.
+        """Call functions to generate n_trunk, n_branch, n_leaf, answer, and question.
 
         Args:
             dice: If dice are not None, the get_random_trunk_branch_leaf function will return
-            a trunk, branch, and leaf that follow one of three schema:
-               1. Question Trunk, Random Branch, Random leaf
+            a n_trunk, n_branch, and n_leaf that follow one of three schema:
+               1. Question Trunk, Random Branch, Random n_leaf
                2. Random Trunk, Question Branch, Random Leaf
                3. Random Trunk, Random Branch, Random Leaf
 
-        Returns: A trunk, branch, leaf, answer, and question.
+        Returns: A n_trunk, n_branch, n_leaf, answer, and question.
 
         """
         trunk, branch, leaf = get_random_trunk_branch_leaf(self.root_dict, self.root,
                                                            trunk_list=self.trunk_list,
                                                            branch_list=self.branch_list,
+                                                           trunk=self.trunk,
+                                                           branch=self.branch,
+                                                           leaf=self.leaf,
                                                            dice=dice)
         trunk_branch, leaf = stem_parse(trunk, branch, leaf)
         answer, question = (trunk_branch, leaf) if self.coin == 1 else (leaf, trunk_branch)
@@ -99,7 +109,7 @@ class QuizGen:
         to be discarded and attempt a New Question.
         """
         d100 = rand.choice(modulus)
-        max_count = 1 if d100 <= 40 else 2 if 40 < d100 <= 80 else 3 if 80 < d100 <= 99 else 4
+        max_count = 1 if d100 <= 30 else 2 if 30 < d100 <= 60 else 3 if 60 < d100 <= 90 else 4
         counter = 1
         while len(self.aks) < 4:
             mc, multi = self.get_random_mc_answer(counter, max_count)
@@ -116,7 +126,7 @@ class QuizGen:
     def get_random_mc_answer(self, count: int, max_count: int) -> Tuple[Optional[str], Optional[bool]]:
         """Attempts to randomly generate a random multiple choice option.
 
-        Function will create a trunk, branch, leaf, answer, and question the same way we made
+        Function will create a n_trunk, n_branch, n_leaf, answer, and question the same way we made
         a question prompt. It will attempt `tries` times to create an option, if it fails the script
         abandons the Question and starts a New Question Loop.
 
@@ -161,7 +171,7 @@ class QuizGen:
         """Compares multiple-choice option to current answer.
 
         Compares Branch and Leaf from the potential multiple choice (PMC) option and tests whether
-        this leaf exists in the Current Answer's (CA) Branch-Leaf list.
+        this n_leaf exists in the Current Answer's (CA) Branch-Leaf list.
 
         Args:
             mc_branch: PMC Branch
@@ -170,7 +180,6 @@ class QuizGen:
         Returns:
             Returns True if the PMC Leaf exists in the CA Branch-Leaf, otherwise False.
         """
-        logger.debug(f'{mc_branch} and {mc_leaf} \n {self.root_dict[self.root][self.trunk]}')
         if self.branch is mc_branch:
             if self.root_dict[self.root][self.trunk].get(mc_branch):
                 if mc_leaf in self.root_dict[self.root][self.trunk][self.branch]:
@@ -187,7 +196,7 @@ def stem_parse(trunk: str, branch: str, leaf: str) -> Tuple[str, str]:
         leaf: Leaf string
 
     Returns:
-        Trunk and Branch formatted as: f"{trunk} {branch}", and the Leaf.
+        Trunk and Branch formatted as: f"{n_trunk} {n_branch}", and the Leaf.
     """
     trunk_branch, leaf = f'{trunk} {branch}', leaf
     return trunk_branch, leaf
@@ -228,33 +237,33 @@ def get_random_trunk_branch_leaf(root_dict: dict, root: str, trunk_list: list, b
         root: The currently selected Root
         trunk_list: List of Trunks for a given Root. list(root_dict[root].keys())
         branch_list: List of Branches for each Trunk
-        trunk: Current question's Trunk (None on initial question generation.)
-        branch: Current question's Branch (None on initial question generation.)
-        leaf: Current question's Leaf (None on initial question generation.)
+        n_trunk: Current question's Trunk (None on initial question generation.)
+        n_branch: Current question's Branch (None on initial question generation.)
+        n_leaf: Current question's Leaf (None on initial question generation.)
 
     Returns:
         Returns a randomly selected Trunk, Leaf, and Branch.
     """
-    trunk, branch, leaf = trunk, branch, leaf
+    n_trunk, n_branch, n_leaf = trunk, branch, None
     if dice:
-        if dice in [1]:
-            trunk, branch = None, None
-        elif dice in [2]:
-            branch = None
+        if dice == 1:
+            n_trunk, n_branch = None, None
+        elif dice == 2:
+            n_branch = None
         else:
-            trunk = None
-    while None in [trunk, branch, leaf]:
-        if trunk is None:
-            trunk = rand.choice(trunk_list)     # Not supplied trunk, pick a random one
-        if branch is None:                      # Not supplied branch, pick a random one
-            if trunk is None:                   # This probably never gets called.......
-                branch_list = (list(root_dict[root][trunk].keys()))
-            branch = rand.choice(branch_list)   # Generate a random branch
-        if leaf is None:
-            if root_dict[root][trunk].get(branch):
-                leaf = rand.choice(root_dict[root][trunk][branch])
+            n_trunk = None
+    while None in [n_trunk, n_branch, n_leaf]:
+        if n_trunk is None:
+            n_trunk = rand.choice(trunk_list)     # Not supplied n_trunk, pick a random one
+        if n_branch is None:                      # Not supplied n_branch, pick a random one
+            if n_trunk is None:                   # This probably never gets called.......
+                branch_list = (list(root_dict[root][n_trunk].keys()))
+            n_branch = rand.choice(branch_list)   # Generate a random n_branch
+        if n_leaf is None:
+            if root_dict[root][n_trunk].get(n_branch):
+                n_leaf = rand.choice(root_dict[root][n_trunk][n_branch])
             else:
-                branch = None                   # Could not find leaf, find new branch and try again
-    return trunk, branch, leaf
+                n_branch = None                   # Could not find n_leaf, find new n_branch and try again
+    return n_trunk, n_branch, n_leaf
 
 
